@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cs.dao">
+
+<select id="selectTotalRecord" parameterType="string" resultType="int">
+	SELECT COUNT(*) FROM CS_BBS WHERE CATENO=#{bbs} AND USEYN='Y'
+</select>
+
+<select id="selectNoticeTopList" parameterType="string" resultType="map">
+  SELECT BBSNO
+		,TITLE
+		,WRITER
+		,WDATE
+		,RCNT
+	FROM CS_BBS
+	WHERE CATENO = #{bbs} AND USEYN = 'Y' AND TOPYN='Y'
+	ORDER BY BBSNO DESC
+</select>
+
+<select id="selectNoticeList" parameterType="hashmap" resultType="map">
+SELECT BBSNO, TITLE, WDATE, RCNT, TOPYN FROM(SELECT *,  @rownum:=@rownum+1 AS rnum FROM(SELECT * FROM CS_BBS)R)T1,(SELECT @rownum:=0)T2 WHERE rnum <![CDATA[>=]]>#{start} AND rnum<![CDATA[<=]]>#{end} AND CATENO = #{bbs}
+</select>
+
+<select id="selectQnAList" parameterType="string" resultType="map">
+SELECT BBSNO, TITLE, WRITER, RCNT, SECYN, REPYN FROM(SELECT *,  @rownum :=@rownum+1 AS rnum FROM(SELECT * FROM CS_BBS)R)T1,(SELECT @rownum:=0)T2 WHERE rnum<![CDATA[>=]]>#{start} AND rnum<![CDATA[<=]]>#{end} AND CATENO = #{bbs}
+</select>
+
+<select id="selectQnAListRepl" parameterType="string" resultType="map">
+  SELECT BBSNO
+		,TITLE
+		,WRITER
+		,RCNT
+		,SECYN
+		,REPNO
+	FROM CS_BBS
+	WHERE CATENO = #{bbs} AND USEYN = 'Y' AND REPYN = 'Y'
+	ORDER BY BBSNO DESC
+</select>
+
+<select id="selectBbsView" parameterType="int" resultType="map">
+  SELECT TITLE
+		,WRITER
+		,CONT
+		,WDATE
+		,RCNT
+		,CATENO
+		,BBSNO
+		,USERNO
+		,SECYN
+		,REPYN
+	FROM CS_BBS 
+	WHERE BBSNO= #{bbsno}
+</select>
+
+<select id="selectBbsForm" parameterType="int" resultType="map">
+  SELECT TITLE
+		,CONT
+		,TOPYN
+		,SECYN
+	FROM CS_BBS
+	WHERE BBSNO= #{bbsno}
+</select>
+
+<select id="selectBbsUserno" parameterType="int" resultType="map">
+	SELECT USERNO
+	FROM CS_BBS
+	WHERE BBSNO = 
+		(SELECT REPNO FROM CS_BBS WHERE BBSNO = #{bbsno})
+</select>
+
+
+<update id="updateBbsRcnt" parameterType="int">
+	UPDATE CS_BBS SET RCNT = RCNT+1 
+	WHERE BBSNO = #{bbsno}
+</update>
+
+<update id="updateBbs" parameterType="map">
+	UPDATE CS_BBS SET
+		TITLE = #{bbsTitle},
+		CONT = #{bbsCont},
+		TOPYN = #{bbsTopyn},	
+		SECYN = #{bbsSecyn}	
+	WHERE BBSNO = #{bbsno}
+</update>
+
+<update id="deleteBbs" parameterType="int">
+	UPDATE CS_BBS SET USEYN = 'N'
+	WHERE BBSNO = #{bbsno}
+</update>
+
+<insert id="insertBbs" parameterType="map">
+	INSERT INTO CS_BBS VALUES(
+		null,#{bbsTitle},#{bbsCont},(SELECT USERNAME FROM M_MEMBER T1 WHERE T1.USERID = #{writer}),sysdate(),#{bbs},#{bbsTopyn},#{bbsSecyn},(SELECT USERNO FROM M_MEMBER T1 WHERE T1.USERID = #{writer}),0,'Y',#{bbsRepyn},#{bbsRepno}
+	)
+</insert>
+</mapper>

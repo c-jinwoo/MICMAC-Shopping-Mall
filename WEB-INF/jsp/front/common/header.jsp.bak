@@ -1,0 +1,228 @@
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="mm" uri="/WEB-INF/tld/mm.tld"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html lang="ko">
+<head>
+<title>MICMAC 온라인 쇼핑몰</title>
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="initial-scale=1.0"/>
+<link rel="stylesheet" href="/common/css/front.css" type="text/css">
+<link rel="stylesheet" href="/common/css/demo.css" type="text/css">
+<link rel="stylesheet" href="/common/css/slick.css" type="text/css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/common/js/ScrollTrigger.js"></script>
+<script type="text/javascript" src="/common/js/slick.js"></script>
+</head>
+<script>
+
+	$(document).ready(function(){	
+		
+		$("#user_tab").css('height', $(document).height());
+		$("#user_tab .user_tab_inner").css('height', $(document).height() - 75 +"px");
+
+		/* 메인 메뉴 활성화/비활성화 */
+		$("#header .header_gnb .header_menu").hover(		
+			function(){
+				$(".header_gnb_cate").addClass("active");
+			},function(){				
+			}
+		);
+		$("#header .header_gnb_cate").hover(		
+			function(){
+				$(this).addClass("active");
+			},function(){	
+				$(this).removeClass("active");
+			}
+		);		
+
+		/* 우측 네비 활성화/비활성화 */
+		$("#user_tab_control .user_tab_login, #user_tab_control .user_tab_bag, #user_tab_control .user_tab_wishlist, #user_tab_control .user_tab_search").click(function(){
+			$(this).parent().animate({
+				right:300
+			});
+			$("#user_tab").animate({
+				right:0
+			});
+			$(".user_tab_rmt, .user_tab_link").removeClass("active");
+			$(this).addClass("active");$(".user_tab_close").addClass("active");
+
+			if($(".user_tab_login").hasClass("active")){
+				$(".user_info").addClass("active");
+			}
+			else if($(".user_tab_bag").hasClass("active")){
+				$(".user_bag_list").addClass("active");
+			}
+			else if($(".user_tab_wishlist").hasClass("active")){
+				$(".user_wish_list").addClass("active");
+			}
+			else if($(".user_tab_search").hasClass("active")){
+				$(".user_search").addClass("active");
+			}
+		});	
+		$(".user_tab_close").click(function(){
+			$(this).parent().animate({
+				right:0
+			});
+			$("#user_tab").animate({
+				right:-300
+			});
+			$(this).removeClass("active");$(".user_tab_rmt, .user_tab_link").removeClass("active");
+		});	
+		
+
+	});	
+	
+	/* 창조절 시 우측 네비 조절 */
+	$(window).resize(function(){
+		$("#user_tab").css('height', $(document).height());
+		$("#user_tab .user_tab_inner").css('height', $(document).height() - 75 +"px");
+	});
+	
+	/* 우측 리모컨 이동 */
+	$(window).scroll(function(){
+		var position=$(window).scrollTop();
+		$("#user_tab_control").stop().animate({"top":position+75+"px"},300);
+	});
+
+
+</script>
+<body>
+
+<div id="header">
+	<div class="header_gnb">
+		<div class="header_logo" onclick="javascript:location.href='../main/main.do';">micmac</div>
+		<div class="header_menu">
+			<ul>
+				<li class="header_menu_list menu_top"><a href="../clothing/main.do?bbs=11" class="menu_top">Clothing</a></li>
+				<li class="header_menu_list menu_bottom"><a href="../shoes/main.do?bbs=21" class="menu_bottom">Shoes</a></li>
+				<li class="header_menu_list menu_outer"><a href="../acc/main.do?bbs=31" class="menu_outer">Acc</a></li>
+				<li class="header_menu_list menu_dress"><a href="../cs/main.do?bbs=41" class="menu_dress">C/S</a></li>
+			</ul>
+		</div>
+	</div>	
+	<div class="header_gnb_cate">
+		<div class="header_gnb_cate_menu">
+			<div class="header_gnb_cate_content">
+				<div class="header_gnb_cate_content_inner">
+					<div class="header_option"><a href="../clothing/main.do?bbs=11">Top</a></div>
+					<div class="header_option"><a href="../clothing/main.do?bbs=12">Bottom</a></div>
+					<div class="header_option"><a href="../clothing/main.do?bbs=13">Dress</a></div>
+					<div class="header_option"><a href="../clothing/main.do?bbs=14">Outer</a></div>
+					<div class="header_option"><a href="../clothing/main.do?bbs=15">Seasonal Items</a></div>
+				</div>
+				<div class="header_gnb_cate_content_inner">
+					<div class="header_option"><a href="../shoes/main.do?bbs=21">Boots</a></div>
+					<div class="header_option"><a href="../shoes/main.do?bbs=22">Heels</a></div>
+				</div>
+				<div class="header_gnb_cate_content_inner">
+					<div class="header_option"><a href="../acc/main.do?bbs=31">Hat</a></div>
+					<div class="header_option"><a href="../acc/main.do?bbs=32">Bag</a></div>
+					<div class="header_option"><a href="../acc/main.do?bbs=33">Etc</a></div>
+				</div>
+				<div class="header_gnb_cate_content_inner">
+					<div class="header_option"><a href="../cs/main.do?bbs=41">Notice</a></div>
+					<div class="header_option"><a href="../cs/main.do?bbs=42">QnA</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="user_tab_control">
+	<div class="user_tab_rmt user_tab_login"><img class="login_icon" src="/image/sitemng/login_icon.png"/></div>
+	<div class="user_tab_rmt user_tab_bag"><img class="bag_icon" src="/image/sitemng/bag_icon.png"/></div>
+	<div class="user_tab_rmt user_tab_wishlist"><img class="wishlist_icon" src="/image/sitemng/wishlist_icon.png"/></div>
+	<div class="user_tab_rmt user_tab_search"><img class="search_icon" src="/image/sitemng/search_icon.png"/></div>
+	<div class="user_tab_rmt user_tab_close"><img class="close_icon" src="/image/sitemng/closetab_icon.png"/></div>
+</div>
+
+<div id="user_tab">
+	<div class="user_tab_title">
+		<div class="user_tab_title_inner">
+			<c:choose>
+				<c:when test="${mm:isLogin()}">
+					<a href="/front/login/logoutExec.do">LOGOUT</a>
+					<span>&nbsp&nbsp | &nbsp&nbsp</span>
+					<a href="/front/member/mypage.do">MY PAGE</a>
+				</c:when>
+				<c:otherwise>
+					<a href="/front/login/login.do">LOGIN</a>
+					<span>&nbsp&nbsp | &nbsp&nbsp</span>
+					<a href="/front/member/join.do">JOIN US</a>
+				</c:otherwise>
+			</c:choose>	
+		</div>
+	</div>
+	<div class="user_tab_inner">
+
+		<!-- 로그인 정보 -->
+		<div class="user_info user_tab_link">
+			<c:choose>
+				<c:when test="${mm:isLogin()}">
+					<div class="user_welcome">
+						<c:out value="${mm:getUserNm()}"/><span>&nbsp님 반갑습니다 :)</span>
+					</div>
+
+
+					<div class="user_info_table table_05">
+						<table>
+							<colgroup>
+								<col width="50%" />
+								<col width="50%" />
+							</colgroup>
+							<tbody>
+								<tr>
+									<td><b>회원 등급</b></td>
+									<td>
+										<c:choose>	
+											<c:when test="${mm:getUserGradeNo() == '1'}"><span class="green">일반회원</span></c:when>
+											<c:when test="${mm:getUserGradeNo() == '50'}"><span class="red">VIP</span></c:when>
+											<c:when test="${mm:getUserGradeNo() == '100'}"><span class="blue">관리자</span></c:when>
+										</c:choose>
+									</td>
+								</tr>
+								<tr>
+									<td><b>포인트</b></td>
+									<td><c:out value="${mm:getPoint()}"/>&nbsp원<c:out value="${mm:getUserPhoneNum()}"/></td>
+								</tr>
+							</tbody>
+						</table>						
+					</div>
+
+				</c:when>
+				<c:otherwise>
+					<div class="user_welcome">
+						<span class="please_login">로그인 해주세요 :)</span>
+					</div>
+				</c:otherwise>
+			</c:choose>			
+		</div>
+
+
+
+		<!-- 장바구니 -->
+		<div class="user_bag_list user_tab_link">
+			<div class="rnav_title">BASKET</div>
+			<div class="rnav_title_ul"></div>
+
+
+		</div>
+
+		<!-- 위시리스트 -->
+		<div class="user_wish_list user_tab_link">
+			<div class="rnav_title">WISHLIST</div>
+			<div class="rnav_title_ul"></div>
+			
+		</div>
+
+		<!-- 검색 -->
+		<div class="user_search user_tab_link">
+			<div class="rnav_title">SEARCH</div>
+			<div class="rnav_title_ul"></div>
+								
+		</div>
+
+	</div>
+</div>
+

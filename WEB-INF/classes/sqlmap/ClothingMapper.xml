@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="clothing.dao">
+
+<select id="selectClothingList" parameterType="string" resultType="map">
+  SELECT PRODUCTNO
+		,CATENO
+		,SELLYN
+		,IMG1
+		,COLOR1
+		,COLOR2
+		,COLOR3
+		,COLOR4
+		,COLOR5
+	FROM SP_PRODUCT_LIST
+	WHERE CATENO = #{bbs}
+	ORDER BY PRODUCTNO ASC
+</select>
+
+<select id="selectClothingInfo" parameterType="int" resultType="map">
+  SELECT PRODUCTNO
+		,PRODUCTNAME
+		,PRICE
+		,CATENO
+		,SELLYN
+		,OPT1
+		,OPT2
+		,OPT3
+		,OPT4
+		,OPT5
+		,OPT6
+		,OPT7
+		,OPT8
+		,OPT9
+		,OPT10
+		,IMG1
+		,COLOR1
+		,COLOR2
+		,COLOR3
+		,COLOR4
+		,COLOR5
+		,DESCRIPT
+	FROM SP_PRODUCT_LIST
+	WHERE PRODUCTNO = #{productNo}
+</select>
+
+<select id="selectClothingImg" parameterType="int" resultType="hashmap">
+  SELECT IMG1
+		,IMG2
+		,IMG3
+		,IMG4
+		,IMG5
+		,IMG6
+		,IMG7
+		,IMG8
+		,IMG9
+		,IMG10
+		,IMG11
+		,IMG12
+		,IMG13
+		,IMG14
+		,IMG15
+		,IMG16
+		,IMG17
+		,IMG18
+		,IMG19
+		,IMG20
+	FROM SP_PRODUCT_LIST
+	WHERE PRODUCTNO = #{productNo}
+</select>
+
+</mapper>

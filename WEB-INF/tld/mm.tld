@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+  version="2.0">
+    
+	<description>JSTL 1.1 functions library</description>
+	<display-name>JSTL functions</display-name>
+	<tlib-version>1.1</tlib-version>
+	<short-name>mm</short-name>
+	
+	<function>
+		<description>login Check(Y/N)</description>
+		<name>isLogin</name>
+		<function-class>com.micmac.session.UserSessionManager</function-class>
+		<function-signature>boolean isLogin()</function-signature>
+	</function>
+	
+	<function>
+		<description>login User NO</description>
+		<name>getUserNO</name>
+		<function-class>com.micmac.session.UserSessionManager</function-class>
+		<function-signature>java.lang.Integer getUserNO()</function-signature>
+	</function>
+	
+	
+	<function>
+		<description>login User Name</description>
+		<name>getUserNm</name>
+		<function-class>com.micmac.session.UserSessionManager</function-class>
+		<function-signature>java.lang.String getUserNm()</function-signature>
+	</function>
+	
+	<function>
+		<description>login User Login Id</description>
+		<name>getUserId</name>
+		<function-class>com.micmac.session.UserSessionManager</function-class>
+		<function-signature>java.lang.String getUserId()</function-signature>
+	</function>
+	
+	<function>
+		<description>login User Grade No</description>
+		<name>getUserGradeNo</name>
+		<function-class>com.micmac.session.UserSessionManager</function-class>
+		<function-signature>java.lang.String getUserGradeNo()</function-signature>
+	</function>
+	
+	<function>
+		<description>login User POINT</description>
+		<name>getPoints</name>
+		<function-class>com.micmac.session.UserSessionManager</function-class>
+		<function-signature>java.lang.Integer getPoints()</function-signature>
+	</function>
+	
+	<function>
+		<description>login User ADDR1</description>
+		<name>getAddr1</name>
+		<function-class>com.micmac.session.UserSessionManager</function-class>
+		<function-signature>java.lang.String getAddr1()</function-signature>
+	</function>
+		
+	<function>
+		<description>login User ADDR2</description>
+		<name>getAddr2</name>
+		<function-class>com.micmac.session.UserSessionManager</function-class>
+		<function-signature>java.lang.String getAddr2()</function-signature>
+	</function>
+	<function>
+		<description>login User POSTCODE</description>
+		<name>getPostcode</name>
+		<function-class>com.micmac.session.UserSessionManager</function-class>
+		<function-signature>java.lang.String getPostcode()</function-signature>
+	</function>
+	<function>
+		<description>login User SEX</description>
+		<name>getSex</name>
+		<function-class>com.micmac.session.UserSessionManager</function-class>
+		<function-signature>java.lang.String getSex()</function-signature>
+	</function>
+	<function>
+		<description>login User PHONENUM</description>
+		<name>getPhoneNum</name>
+		<function-class>com.micmac.session.UserSessionManager</function-class>
+		<function-signature>java.lang.String getUserPhoneNum()</function-signature>
+	</function>
+	<function>
+		<description>login User JOINDATE</description>
+		<name>getJoindate</name>
+		<function-class>com.micmac.session.UserSessionManager</function-class>
+		<function-signature>java.lang.String getJoindate()</function-signature>
+	</function>
+	<function>
+		<description>login User EMAIL</description>
+		<name>getEmail</name>
+		<function-class>com.micmac.session.UserSessionManager</function-class>
+		<function-signature>java.lang.String getEmail()</function-signature>
+	</function>
+	<function>
+		<description>login User BDAY</description>
+		<name>getBday</name>
+		<function-class>com.micmac.session.UserSessionManager</function-class>
+		<function-signature>java.lang.String getBday()</function-signature>
+	</function>
+	
+</taglib>

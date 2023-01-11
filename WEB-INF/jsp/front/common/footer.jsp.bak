@@ -1,0 +1,23 @@
+<%@ page contentType="text/html; charset=utf-8"%>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="initial-scale=1.0"/>
+<link rel="stylesheet" href="/common/css/front.css" type="text/css">
+<link rel="stylesheet" href="/common/css/demo.css" type="text/css">
+<link rel="stylesheet" href="/common/css/slick.css" type="text/css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/common/js/ScrollTrigger.js"></script>
+<script type="text/javascript" src="/common/js/slick.js"></script>
+</head>
+<script>
+</script>
+<body>
+
+
+MICMAC 홈페이지 개발 중
+
+
+</body>
+</html>

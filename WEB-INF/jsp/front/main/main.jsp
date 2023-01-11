@@ -1,0 +1,104 @@
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<html lang="ko">
+<head>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/common/js/ScrollTrigger.js"></script>
+<script type="text/javascript" src="/common/js/slick.js"></script>
+<script>
+
+	$(document).ready(function(){
+		var trigger = new ScrollTrigger();		// 스크롤 이벤트
+		$(".main_shop_link").css({
+			'left':$(window).width()/2 - 250 + "px",
+			'top' :$(".main_banner").height()/2 - 150  + "px"
+		});	
+		$('.main_banner').slick({
+			infinite: true,
+			speed: 1000,
+			slidesToShow: 1,
+			arrows : false,
+			autoplay : true
+		});
+	});
+
+	$(window).resize(function (){
+		if($(window).width() > 1024){
+			$(".main_shop_link").css('left',$(window).width()/2 - 250 + "px");	
+		}
+	});
+
+</script>
+</head>
+<body>
+<c:import url="/WEB-INF/jsp/front/common/header.jsp"/>
+
+<div id="main">
+	<div class="main_banner"><!--DB 연동할 것-->
+		<div><img src="/image/src/6.jpg"/></div>
+		<div><img src="/image/src/7.jpg"/></div>
+		<div><img src="/image/src/2.jpg"/></div>
+	</div>
+	<div class="main_shop_link">
+		<div class="shop_link_top">
+			FALL & WINTER
+		</div>
+		<div class="shop_link_bottom" onclick="location.href='../clothing/main.do?bbs=11';">
+			Shop Now
+		</div>
+	</div>
+	<div class="mid_nav">
+		<div class="mid_nav_title">
+			<div class="mid_nav_title_inner fromTopInSlow" data-scroll="toggle(.fromTopInSlow, .fromTopOut)">
+				YEAR ROUND
+			</div>
+			<div class="mid_nav_title_middle"></div>
+			<div class="mid_nav_title_bottom">
+				Must Have Items
+			</div>
+		</div>
+		<div class="mid_nav_inner">
+			<div class="mid_nav_left mid_nav_content">
+				<div class="mid_nav_left_inner"></div>
+				<div class="mid_nav_left_text"><span>HOT NOW</span></div>
+			</div>
+			<div class="mid_nav_right mid_nav_content">
+				<div class="mid_nav_right_inner"></div>
+				<div class="mid_nav_right_text"><span>SALE</span></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--<div>
+<table>
+<thead>
+	<tr>
+		<th>유저번호</th>
+		<th>유저아이디</th>
+		<th>비밀번호</th>
+		<th>사용자이름</th>
+		<th>핸드폰번호</th>
+	</tr>
+</thead>
+<tbody>
+	<c:forEach var="item" items="${list}">
+	<tr>
+	${item}
+		<td>${item.USERNO}</td>
+		<td>${item.USERID}</td>
+		<td>${item.PWD}</td>
+		<td>${item.USERNAME}</td>
+		<td>${item.PHONENUM}</td>
+	</tr>
+	</c:forEach>
+</tbody>
+</table>
+</div>
+-->
+
+
+
+<c:import url="/WEB-INF/jsp/front/common/footer.jsp"/>
+</body>
+</html>

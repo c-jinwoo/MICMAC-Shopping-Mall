@@ -1,0 +1,6 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>bouncycastle</groupId>
+  <artifactId>bouncycastle-jce-jdk13</artifactId>
+  <version>112</version>
+</project>

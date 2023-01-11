@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member.dao">
+
+<select id="selectList" resultType="map">
+	SELECT * FROM M_MEMBER
+</select>
+
+
+<select id="selectMemberInfo" parameterType="map" resultType="map">
+  SELECT USERNO
+		,USERID
+		,PWD
+		,USERNAME
+		,PHONENUM
+		,GRADENO
+		,POINTS
+		,ADDR1
+		,ADDR2
+		,POSTCODE
+		,JOINDATE
+		,SEX
+		,EMAIL
+		,COALESCE(BDAY, '0000-00-00') AS BDAY
+	FROM M_MEMBER
+	WHERE USERID = #{userId}
+</select>
+
+<insert id="insertMemberInfo" parameterType="map">
+	INSERT INTO M_MEMBER VALUES(
+		null,#{join_id},#{join_pw},#{join_name},#{join_phonenum},#{join_sex},#{join_addr1},#{join_addr2},#{join_zip},'1',sysdate(),0,#{join_email},COALESCE(#{join_bday},'')
+	)
+</insert>
+
+<select id="selectjoinIDcheck" parameterType="string" resultType="map">
+  SELECT USERNO
+		,USERID
+	FROM M_MEMBER
+	
+	WHERE USERID = #{id}
+</select>
+
+<select id="findID" parameterType="map" resultType="map">
+  SELECT USERID
+	FROM M_MEMBER
+	
+	WHERE USERNAME = #{name} AND PHONENUM = #{phonenum}
+</select>
+
+
+<select id="findPW" parameterType="map" resultType="map">
+  SELECT PWD
+	FROM M_MEMBER
+	
+	WHERE USERNAME = #{name} AND PHONENUM = #{phonenum} AND USERID = #{id}
+</select>
+
+<select id="editcheck" parameterType="map" resultType="map">
+  SELECT USERNAME
+	FROM M_MEMBER
+	
+	WHERE USERID=#{check_id} AND PWD = #{check_pwd}
+</select>
+
+<update id="updatePW" parameterType="map">
+	UPDATE M_MEMBER SET PWD = '1234'
+	WHERE USERNAME = #{name} AND PHONENUM = #{phonenum} AND USERID = #{id}
+</update>
+
+<update id="updateMemberInfo" parameterType="map">
+	UPDATE M_MEMBER SET PWD= #{edit_pw}, PHONENUM=#{edit_phonenum}, POSTCODE=#{edit_zip}, ADDR1=#{edit_addr1}, ADDR2=#{edit_addr2},  EMAIL=#{edit_email}, BDAY=#{edit_bday}
+	WHERE USERID = #{id}
+</update>
+
+<delete id="deleteMemberInfo" parameterType="string">
+	DELETE FROM M_MEMBER WHERE USERID=#{userId}
+</delete>
+
+
+
+
+
+
+
+</mapper>
